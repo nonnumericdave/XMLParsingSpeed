@@ -15,6 +15,7 @@
 		B3E4E7AD1C9923420062207C /* DAFXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E4E7AC1C9923420062207C /* DAFXMLParser.swift */; };
 		B3E4E7AF1C9927330062207C /* DAFNSXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E4E7AE1C9927330062207C /* DAFNSXMLParser.swift */; };
 		B3E4E7B11C9927650062207C /* DAFLibXML2Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E4E7B01C9927650062207C /* DAFLibXML2Parser.swift */; };
+		B3E4E7B71C992B520062207C /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E4E7B61C992B520062207C /* libxml2.2.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		B3E4E7AC1C9923420062207C /* DAFXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFXMLParser.swift; sourceTree = "<group>"; };
 		B3E4E7AE1C9927330062207C /* DAFNSXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFNSXMLParser.swift; sourceTree = "<group>"; };
 		B3E4E7B01C9927650062207C /* DAFLibXML2Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFLibXML2Parser.swift; sourceTree = "<group>"; };
+		B3E4E7B61C992B520062207C /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		B3E4E7BF1C993E960062207C /* XMLParsingSpeed-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMLParsingSpeed-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E4E7B71C992B520062207C /* libxml2.2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +48,7 @@
 		B3E4E78E1C9922530062207C = {
 			isa = PBXGroup;
 			children = (
+				B3E4E7B61C992B520062207C /* libxml2.2.tbd */,
 				B3E4E7991C9922530062207C /* XMLParsingSpeed */,
 				B3E4E7981C9922530062207C /* Products */,
 			);
@@ -60,6 +65,7 @@
 		B3E4E7991C9922530062207C /* XMLParsingSpeed */ = {
 			isa = PBXGroup;
 			children = (
+				B3E4E7BC1C9939290062207C /* SampleXMLFiles */,
 				B3E4E7A11C9922530062207C /* Assets.xcassets */,
 				B3E4E79A1C9922530062207C /* DAFAppDelegate.swift */,
 				B3E4E79C1C9922530062207C /* DAFViewController.swift */,
@@ -69,8 +75,16 @@
 				B3E4E7A61C9922530062207C /* Info.plist */,
 				B3E4E7A31C9922530062207C /* LaunchScreen.storyboard */,
 				B3E4E79E1C9922530062207C /* Main.storyboard */,
+				B3E4E7BF1C993E960062207C /* XMLParsingSpeed-Bridging-Header.h */,
 			);
 			path = XMLParsingSpeed;
+			sourceTree = "<group>";
+		};
+		B3E4E7BC1C9939290062207C /* SampleXMLFiles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SampleXMLFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,10 +275,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = XMLParsingSpeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.playingandsuffering.XMLParsingSpeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XMLParsingSpeed/XMLParsingSpeed-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -272,10 +290,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = XMLParsingSpeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.playingandsuffering.XMLParsingSpeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XMLParsingSpeed/XMLParsingSpeed-Bridging-Header.h";
 			};
 			name = Release;
 		};
