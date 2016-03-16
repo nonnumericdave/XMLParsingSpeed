@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DAFViewController.swift
 //  XMLParsingSpeed
 //
 //  Created by David Flores on 3/15/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController
+class DAFViewController : UIViewController
 {
     override func viewDidLoad()
     {

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  DAFAppDelegate.swift
 //  XMLParsingSpeed
 //
 //  Created by David Flores on 3/15/16.
@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate
+class DAFAppDelegate : UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
 }
