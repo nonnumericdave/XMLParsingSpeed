@@ -12,6 +12,7 @@
 		B3E4E7A01C9922530062207C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3E4E79E1C9922530062207C /* Main.storyboard */; };
 		B3E4E7A21C9922530062207C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3E4E7A11C9922530062207C /* Assets.xcassets */; };
 		B3E4E7A51C9922530062207C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3E4E7A31C9922530062207C /* LaunchScreen.storyboard */; };
+		B3E4E7AD1C9923420062207C /* DAFXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E4E7AC1C9923420062207C /* DAFXMLParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B3E4E7A11C9922530062207C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3E4E7A41C9922530062207C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3E4E7A61C9922530062207C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3E4E7AC1C9923420062207C /* DAFXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFXMLParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				B3E4E7A11C9922530062207C /* Assets.xcassets */,
 				B3E4E79A1C9922530062207C /* DAFAppDelegate.swift */,
 				B3E4E79C1C9922530062207C /* DAFViewController.swift */,
+				B3E4E7AC1C9923420062207C /* DAFXMLParser.swift */,
 				B3E4E7A61C9922530062207C /* Info.plist */,
 				B3E4E7A31C9922530062207C /* LaunchScreen.storyboard */,
 				B3E4E79E1C9922530062207C /* Main.storyboard */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E4E79D1C9922530062207C /* DAFViewController.swift in Sources */,
+				B3E4E7AD1C9923420062207C /* DAFXMLParser.swift in Sources */,
 				B3E4E79B1C9922530062207C /* DAFAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
