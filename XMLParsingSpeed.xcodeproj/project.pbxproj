@@ -16,6 +16,7 @@
 		B3E4E7AF1C9927330062207C /* DAFNSXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E4E7AE1C9927330062207C /* DAFNSXMLParser.swift */; };
 		B3E4E7B11C9927650062207C /* DAFLibXML2Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E4E7B01C9927650062207C /* DAFLibXML2Parser.swift */; };
 		B3E4E7B71C992B520062207C /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E4E7B61C992B520062207C /* libxml2.2.tbd */; };
+		B3E4E7C31C9947C00062207C /* DAFXMLParserProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E4E7C21C9947C00062207C /* DAFXMLParserProfiler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		B3E4E7B01C9927650062207C /* DAFLibXML2Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFLibXML2Parser.swift; sourceTree = "<group>"; };
 		B3E4E7B61C992B520062207C /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		B3E4E7BF1C993E960062207C /* XMLParsingSpeed-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMLParsingSpeed-Bridging-Header.h"; sourceTree = "<group>"; };
+		B3E4E7C21C9947C00062207C /* DAFXMLParserProfiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAFXMLParserProfiler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				B3E4E7B01C9927650062207C /* DAFLibXML2Parser.swift */,
 				B3E4E7AE1C9927330062207C /* DAFNSXMLParser.swift */,
 				B3E4E7AC1C9923420062207C /* DAFXMLParser.swift */,
+				B3E4E7C21C9947C00062207C /* DAFXMLParserProfiler.swift */,
 				B3E4E7A61C9922530062207C /* Info.plist */,
 				B3E4E7A31C9922530062207C /* LaunchScreen.storyboard */,
 				B3E4E79E1C9922530062207C /* Main.storyboard */,
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E4E79D1C9922530062207C /* DAFViewController.swift in Sources */,
+				B3E4E7C31C9947C00062207C /* DAFXMLParserProfiler.swift in Sources */,
 				B3E4E7AF1C9927330062207C /* DAFNSXMLParser.swift in Sources */,
 				B3E4E7AD1C9923420062207C /* DAFXMLParser.swift in Sources */,
 				B3E4E79B1C9922530062207C /* DAFAppDelegate.swift in Sources */,

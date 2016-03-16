@@ -10,9 +10,9 @@ import Foundation
 
 class DAFLibXML2Parser : DAFXMLParser
 {
-    private var elementCount : UInt64 = 0
+    private var elementCount = UInt64(0)
     
-    func SAXParseXMLFileAtPath(urlFilePath: NSURL) -> (NSTimeInterval, UInt64)
+    func parseXMLFileAtPath(urlFilePath: NSURL) -> (NSTimeInterval, UInt64)
     {
         var xmlHandler = xmlSAXHandler()
         xmlHandler.startElement =
@@ -29,6 +29,6 @@ class DAFLibXML2Parser : DAFXMLParser
             urlFilePath.fileSystemRepresentation)
         let timeInterval = startDate.timeIntervalSinceNow
         
-        return (timeInterval, self.elementCount)
+        return (-timeInterval, self.elementCount)
     }
 }

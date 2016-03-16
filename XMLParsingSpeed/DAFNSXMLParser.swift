@@ -10,11 +10,11 @@ import Foundation
 
 class DAFNSXMLParser : NSObject, DAFXMLParser, NSXMLParserDelegate
 {
-    private var elementCount : UInt64 = 0
+    private var elementCount = UInt64(0)
     
-    func SAXParseXMLFileAtPath(urlFilePath: NSURL) -> (NSTimeInterval, UInt64)
+    func parseXMLFileAtPath(urlFilePath: NSURL) -> (NSTimeInterval, UInt64)
     {
-        let parser = NSXMLParser(contentsOfURL:urlFilePath)
+        let parser = NSXMLParser(contentsOfURL: urlFilePath)
         
         parser?.delegate = self
         self.elementCount = 0
@@ -23,7 +23,7 @@ class DAFNSXMLParser : NSObject, DAFXMLParser, NSXMLParserDelegate
         parser?.parse()
         let timeInterval = startDate.timeIntervalSinceNow
         
-        return (timeInterval, self.elementCount)
+        return (-timeInterval, self.elementCount)
     }
     
     func parser(
