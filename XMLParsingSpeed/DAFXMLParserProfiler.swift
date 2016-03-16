@@ -15,15 +15,15 @@ class DAFXMLParserProfiler
     private let nsXMLParser = DAFNSXMLParser()
 
     /**
-     Parser used for testing.
+     Parser results for testing.
      
      - LibXML2: The LibXML2 SAX parser.
      - NSXML: The NSXMLParser SAX parser.
      */
-    enum Parser
+    enum ParserResult
     {
-        case LibXML2
-        case NSXML
+        case LibXML2(parsingTime: NSTimeInterval, elementCount: UInt64)
+        case NSXML(parsingTime: NSTimeInterval, elementCount: UInt64)
     }
     
     /**
@@ -39,17 +39,15 @@ class DAFXMLParserProfiler
     /**
         The callback used to specify the progress of the parser trials.
      
-        - Parameter parser: The parser used during the current trial.
-        - Parameter parsingTime: The time the parser took to complete the current trial.
-        - Parameter elementCount: The number of elements parsed during current trial.
+        - Parameter parser: The parser result for this trial.
      */
     typealias TrialClosure =
-        (parser: Parser, parsingTime: NSTimeInterval, elementCount: UInt64) -> Void
+        (parserResult : ParserResult) -> Void
     
     /**
         Runs randomly-assorted trials for the parsers.
      
-        - Parameter trialsPerParser: The number of trials to run per parser.
+        - Parameter trialClosure: The closure used as the callback for the trial results.
      
         - Returns: If all trials were attempted, returns true, otherwise returns false.
      */
@@ -69,21 +67,14 @@ class DAFXMLParserProfiler
             randomPermuationRange[swapIndex] = value
         }
         
-        var (parsingTime, elementCount, parser) : (NSTimeInterval, UInt64, Parser)
         for trialIndex in randomPermuationRange
         {
-            if ( trialIndex % 2 == 0 )
-            {
-                parser = .LibXML2
-                (parsingTime, elementCount) = libXML2Parser.parseXMLFileAtPath(nasaFileURL)
-            }
-            else
-            {
-                parser = .NSXML
-                (parsingTime, elementCount) = nsXMLParser.parseXMLFileAtPath(nasaFileURL)
-            }
+            let parserResult =
+                trialIndex % 2 == 0 ?
+                    ParserResult.LibXML2(libXML2Parser.parseXMLFileAtPath(nasaFileURL)) :
+                    ParserResult.NSXML(nsXMLParser.parseXMLFileAtPath(nasaFileURL))
             
-            trialClosure(parser: parser, parsingTime: parsingTime, elementCount: elementCount)
+           trialClosure(parserResult: parserResult)
         }
         
         return true

@@ -19,5 +19,5 @@ protocol DAFXMLParser
         - Returns: The time interval required to complete the parse, along with
             the number of elements in the XML document.
      */
-    func parseXMLFileAtPath(urlFilePath: NSURL) -> (NSTimeInterval, UInt64)
+    func parseXMLFileAtPath(urlFilePath: NSURL) -> (parsingTime: NSTimeInterval, elementCount: UInt64)
 }
