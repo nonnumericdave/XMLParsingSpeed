@@ -16,8 +16,26 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nk7-tD-6CB">
+                                <rect key="frame" x="225" y="285" width="151" height="30"/>
+                                <state key="normal" title="Perform XML Profiling">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="performXMLProfiling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ktH-CL-gEq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nk7-tD-6CB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Hy3-1Q-bDw"/>
+                            <constraint firstItem="nk7-tD-6CB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vo0-Ip-mhc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="performXMLProfilingButton" destination="nk7-tD-6CB" id="gWX-M7-oi7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

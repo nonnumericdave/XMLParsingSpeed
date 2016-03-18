@@ -7,3 +7,4 @@
 //
 
 #include <libxml/parser.h>
+#include <math.h>

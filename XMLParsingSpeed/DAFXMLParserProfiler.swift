@@ -33,7 +33,7 @@ class DAFXMLParserProfiler
      */
     init(trialsPerParser: UInt64)
     {
-        self.trialRange = 1...trialsPerParser
+        self.trialRange = 1...(2*trialsPerParser)
     }
 
     /**
@@ -53,8 +53,7 @@ class DAFXMLParserProfiler
      */
     func runRandomlyAssortedParserTrials(@noescape trialClosure: TrialClosure) -> Bool
     {
-        guard let nasaFileURL = NSBundle.mainBundle().URLForResource("nasa", withExtension: "xml")
-        else
+        guard let nasaFileURL = NSBundle.mainBundle().URLForResource("nasa", withExtension: "xml") else
         {
             return false
         }
