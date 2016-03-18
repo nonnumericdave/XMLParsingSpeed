@@ -23,7 +23,7 @@ class DAFViewController : UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
         self.libXML2ProgressView.hidden = true
         self.view.addSubview(self.libXML2ProgressView)
         self.libXML2ProgressView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,8 +53,6 @@ class DAFViewController : UIViewController
             $0.priority = 750
         }
         
-        NSLayoutConstraint.activateConstraints(portraitConstraints)
-        
         landscapeConstraints = [
             self.libXML2ProgressView.topAnchor.constraintEqualToAnchor(self.nsXMLProgressView.topAnchor),
             self.libXML2ProgressView.rightAnchor.constraintEqualToAnchor(self.nsXMLProgressView.leftAnchor, constant: -20)
@@ -64,15 +62,15 @@ class DAFViewController : UIViewController
         {
             $0.priority = 750
         }
+        
+        self.updateConstraintsForSize(self.view.bounds.size)
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
     {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
-        NSLayoutConstraint.deactivateConstraints(portraitConstraints)
-        NSLayoutConstraint.deactivateConstraints(landscapeConstraints)
-        NSLayoutConstraint.activateConstraints(size.width < size.height ? portraitConstraints : landscapeConstraints)
+        self.updateConstraintsForSize(size)
         
         coordinator.animateAlongsideTransition(
             {
@@ -81,6 +79,17 @@ class DAFViewController : UIViewController
                 self.view.layoutIfNeeded()
             },
             completion: nil)
+    }
+    
+    override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+        
+        let scale =
+            min(self.libXML2ProgressView.preferredScale, self.nsXMLProgressView.preferredScale)
+     
+        self.libXML2ProgressView.scale = scale
+        self.nsXMLProgressView.scale = scale
     }
     
     @IBAction
@@ -123,11 +132,30 @@ class DAFViewController : UIViewController
     private func didCompleteLibXML2Parse(parsingTime : NSNumber)
     {
         self.libXML2ProgressView.addTrialWithMeasuredValue(parsingTime.doubleValue)
+        
+        let libXML2Scale = self.libXML2ProgressView.scale
+        if libXML2Scale < self.nsXMLProgressView.scale
+        {
+            self.nsXMLProgressView.scale = libXML2Scale
+        }
     }
     
     @objc(didCompleteNSXMLParseWithParsingTime:)
     private func didCompleteNSXMLParse(parsingTime : NSNumber)
     {
         self.nsXMLProgressView.addTrialWithMeasuredValue(parsingTime.doubleValue)
+
+        let nsXMLScale = self.nsXMLProgressView.scale
+        if nsXMLScale < self.libXML2ProgressView.scale
+        {
+            self.libXML2ProgressView.scale = nsXMLScale
+        }
+    }
+    
+    private func updateConstraintsForSize(size: CGSize)
+    {
+        NSLayoutConstraint.deactivateConstraints(portraitConstraints)
+        NSLayoutConstraint.deactivateConstraints(landscapeConstraints)
+        NSLayoutConstraint.activateConstraints(size.width < size.height ? portraitConstraints : landscapeConstraints)
     }
 }

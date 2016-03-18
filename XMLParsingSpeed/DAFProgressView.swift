@@ -13,8 +13,29 @@ class DAFProgressView : UIView
     private var trialCount = UInt64(0)
     private var trialIndex = UInt64(0)
     private let trialPath = UIBezierPath()
+    private var trialPathScale = CGFloat(CGFloat.max)
     
-    private var preferredScale : CGFloat
+    var scale : CGFloat
+    {
+        get
+        {
+            return self.trialPathScale
+        }
+        
+        set (scale)
+        {
+            guard scale != trialPathScale else
+            {
+                return
+            }
+            
+            self.trialPathScale = scale
+            
+            self.trialPathNeedsDisplay()
+        }
+    }
+    
+    var preferredScale : CGFloat
     {
         typealias ScaleContextType = (maxX: CGFloat, maxY: CGFloat, preferredScale: CGFloat)
         
@@ -76,13 +97,8 @@ class DAFProgressView : UIView
     override func layoutSubviews()
     {
         super.layoutSubviews()
-
-        /*
-        var transform = CGAffineTransformMakeScale(0.25, 0.25)
-        transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(self.bounds.midX, self.bounds.midY), CGAffineTransformMakeScale(0.25, 0.25))
-
-        self.transform = transform
-*/
+        
+        self.trialPathNeedsDisplay()
     }
     
     override class func layerClass() -> AnyClass
@@ -106,37 +122,34 @@ class DAFProgressView : UIView
             return
         }
         
-        let hypotenuse = 100.0*measuredValue
+        let hypotenuse = measuredValue
         let theta = Double(self.trialIndex) * 2 * M_PI / Double(self.trialCount)
         let point = CGPoint(x: hypotenuse * cos(theta), y: hypotenuse * sin(theta))
         
         self.trialPath.addLineToPoint(point)
 
-        let scale = self.preferredScale
-        self.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(self.bounds.midX, self.bounds.midY), CGAffineTransformMakeScale(scale, scale))
-        
-        (self.layer as! CAShapeLayer).path = self.trialPath.CGPath
-        
-        /*
-        let preferredScale = self.preferredScale
-        var transform = CGAffineTransformMakeScale(preferredScale, preferredScale)
-        transform = CGAffineTransformConcat(transform, CGAffineTransformMakeTranslation(self.bounds.midX, self.bounds.midY))
-        let scaledTrialPath = self.trialPath.copy()
-        scaledTrialPath.applyTransform(transform)
-        
-        
-        (self.layer as! CAShapeLayer).path = scaledTrialPath.CGPath
-        */
-        
-/*
-        let scaledTrialPath = self.trialPath.copy()
-        let preferredScale = self.preferredScale
-        scaledTrialPath.applyTransform(CGAffineTransformMakeScale(preferredScale, preferredScale))
-        
-        (self.layer as! CAShapeLayer).path = scaledTrialPath.CGPath
-  */
-        
+        self.trialPathNeedsDisplay()
         
         self.trialIndex += 1
+    }
+    
+    private func trialPathNeedsDisplay()
+    {
+        let preferredScale = self.preferredScale
+        if preferredScale < self.trialPathScale
+        {
+            self.trialPathScale = preferredScale
+        }
+        
+        let scaledTrialPath = self.trialPath.copy()
+        let scale = self.trialPathScale
+        let transform =
+            CGAffineTransformScale(CGAffineTransformMakeTranslation(self.bounds.midX, self.bounds.midY),
+                scale,
+                scale)
+        
+        scaledTrialPath.applyTransform(transform)
+        
+        (self.layer as! CAShapeLayer).path = scaledTrialPath.CGPath
     }
 }
