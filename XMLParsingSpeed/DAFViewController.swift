@@ -10,6 +10,7 @@ import UIKit
 
 class DAFViewController : UIViewController
 {
+    private let progressViewSpacing = CGFloat(-20)
     private let trialsPerParser = UInt64(100)
     private let libXML2ProgressView =
         DAFProgressView(foregroundColor: UIColor.whiteColor(), backgroundColor: UIColor.blackColor())
@@ -45,22 +46,22 @@ class DAFViewController : UIViewController
         
         portraitConstraints = [
             self.libXML2ProgressView.leftAnchor.constraintEqualToAnchor(self.nsXMLProgressView.leftAnchor),
-            self.libXML2ProgressView.bottomAnchor.constraintEqualToAnchor(self.nsXMLProgressView.topAnchor, constant: -20)
+            self.libXML2ProgressView.bottomAnchor.constraintEqualToAnchor(self.nsXMLProgressView.topAnchor, constant: -self.progressViewSpacing)
         ]
 
         portraitConstraints.forEach
         {
-            $0.priority = 750
+            $0.priority = UILayoutPriorityDefaultHigh
         }
         
         landscapeConstraints = [
             self.libXML2ProgressView.topAnchor.constraintEqualToAnchor(self.nsXMLProgressView.topAnchor),
-            self.libXML2ProgressView.rightAnchor.constraintEqualToAnchor(self.nsXMLProgressView.leftAnchor, constant: -20)
+            self.libXML2ProgressView.rightAnchor.constraintEqualToAnchor(self.nsXMLProgressView.leftAnchor, constant: -self.progressViewSpacing)
         ]
 
         landscapeConstraints.forEach
         {
-            $0.priority = 750
+            $0.priority = UILayoutPriorityDefaultHigh
         }
         
         self.updateConstraintsForSize(self.view.bounds.size)
@@ -74,7 +75,7 @@ class DAFViewController : UIViewController
         
         coordinator.animateAlongsideTransition(
             {
-                (_) -> Void in
+                (_) in
                 
                 self.view.layoutIfNeeded()
             },
@@ -104,13 +105,11 @@ class DAFViewController : UIViewController
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
         {
-            () -> Void in
-    
             let xmlParserProfiler = DAFXMLParserProfiler(trialsPerParser: self.trialsPerParser)
             
             xmlParserProfiler.runRandomlyAssortedParserTrials
             {
-                (parserResult) -> Void in
+                (parserResult: DAFXMLParserProfiler.ParserResult) in
 
                 switch (parserResult)
                 {

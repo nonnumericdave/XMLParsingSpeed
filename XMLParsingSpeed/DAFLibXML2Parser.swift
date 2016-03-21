@@ -17,7 +17,7 @@ class DAFLibXML2Parser : DAFXMLParser
         var xmlHandler = xmlSAXHandler()
         xmlHandler.startElement =
         {
-            (contextPointer: UnsafeMutablePointer<Void>, _, _) -> Void in
+            (contextPointer: UnsafeMutablePointer<Void>, _, _) in
             Unmanaged<DAFLibXML2Parser>.fromOpaque(COpaquePointer(contextPointer)).takeUnretainedValue().elementCount += 1
         }
         

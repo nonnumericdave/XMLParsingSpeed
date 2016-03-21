@@ -327,6 +327,7 @@
 				B3E4E7AB1C9922530062207C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

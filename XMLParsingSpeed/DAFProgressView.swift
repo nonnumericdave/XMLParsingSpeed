@@ -10,6 +10,7 @@ import UIKit
 
 class DAFProgressView : UIView
 {
+    private var availableSpacePercentage = CGFloat(0.95)
     private var trialCount = UInt64(0)
     private var trialIndex = UInt64(0)
     private let trialPath = UIBezierPath()
@@ -38,8 +39,14 @@ class DAFProgressView : UIView
     var preferredScale : CGFloat
     {
         typealias ScaleContextType = (maxX: CGFloat, maxY: CGFloat, preferredScale: CGFloat)
+
+        let midX = self.bounds.midX
+        let maxX = abs(midX - (midX * (1 - self.availableSpacePercentage)))
         
-        var scaleContext : ScaleContextType = (self.bounds.midX, self.bounds.midY, CGFloat.max)
+        let midY = self.bounds.midY
+        let maxY = abs(midY - (midY * (1 - self.availableSpacePercentage)))
+        
+        var scaleContext : ScaleContextType = (maxX, maxY, CGFloat.max)
         
         CGPathApply(trialPath.CGPath, &scaleContext)
         {
@@ -149,7 +156,21 @@ class DAFProgressView : UIView
                 scale)
         
         scaledTrialPath.applyTransform(transform)
-        
+
         (self.layer as! CAShapeLayer).path = scaledTrialPath.CGPath
+        
+        CATransaction.begin()
+
+        let presentationLayerPath = self.layer.presentationLayer()?.valueForKeyPath("path")
+
+        self.layer.removeAnimationForKey("scaledTrialPath")
+        
+        let animation = CABasicAnimation(keyPath: "path")
+        animation.fromValue = presentationLayerPath
+        animation.toValue = scaledTrialPath.CGPath
+        animation.duration = 0.1
+        self.layer.addAnimation(animation, forKey: "scaledTrialPath")
+        
+        CATransaction.commit()
     }
 }
