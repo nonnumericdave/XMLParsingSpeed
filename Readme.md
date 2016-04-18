@@ -11,6 +11,6 @@ XMLParsingSpeed/XMLParsingSpeed/SampleXMLFiles
 
 to the project.  Underneath that folder, you will need to copy the "nasa.xml" file located at:
 
-[Univeristy of Washington XML Data Repository](http://www.cs.washington.edu/research/xmldatasets/www/repository.html)
+[University of Washington XML Data Repository](http://www.cs.washington.edu/research/xmldatasets/www/repository.html)
 
 Ensure that "nasa.xml" gets copied to the bundle inside "Copy Bundle Resources" under the "Build Phases" tab.
